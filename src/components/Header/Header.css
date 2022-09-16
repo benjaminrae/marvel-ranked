@@ -1,0 +1,24 @@
+.header {
+    width: 100%;
+    background-color: white;
+}
+
+.header__title {
+    color: white;
+    padding: 2rem;
+    font-size: 2rem;
+}
+
+.caps {
+    text-transform: uppercase;
+    background-color: var(--marvel-red);
+    padding: 0 0.5rem;
+}
+
+.border-top-bottom {
+    font-weight: 100;
+    color: black;
+    border-top: 3px solid black;
+    border-bottom: 3px solid black;
+    font-size: 1.9rem;
+}
