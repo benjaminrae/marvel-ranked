@@ -9,6 +9,11 @@ const Header = () => {
                 <span className="caps">Marvel</span>{" "}
                 <span className="border-top-bottom">Ranking</span>
             </h1>
+            <nav className="header__nav">
+                <ul className="nav__ul">
+                    <li className="ul__li">Leaderboard</li>
+                </ul>
+            </nav>
         </div>
     );
 };
