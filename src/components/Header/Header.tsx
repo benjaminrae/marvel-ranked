@@ -11,6 +11,7 @@ const Header = () => {
             </h1>
             <nav className="header__nav">
                 <ul className="nav__ul">
+                    <li className="ul__li">Rank</li>
                     <li className="ul__li">Leaderboard</li>
                 </ul>
             </nav>
