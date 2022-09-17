@@ -5,6 +5,7 @@ import Header from "./components/Header/Header";
 import { marvelService } from "./services/marvel";
 
 const App = (): JSX.Element => {
+    const handleStart = (event: React.MouseEvent<HTMLButtonElement>) => {};
     return (
         <div className="app">
             <Header />

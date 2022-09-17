@@ -4,7 +4,7 @@ import "./Button.css";
 type ButtonProps = {
     className?: string;
     innerText: string;
-    onClick: () => void;
+    onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
 };
 const Button = ({
     className,
