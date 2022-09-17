@@ -1,5 +1,77 @@
 import axios from "axios";
 
+type CharacterDataWrapper = {
+    code?: number;
+    status?: string;
+    copyright?: string;
+    attributionText?: string;
+    attributionHTML?: string;
+    data?: CharacterDataContainer;
+    etag?: string;
+};
+
+type CharacterDataContainer = {
+    offset?: number;
+    limit?: number;
+    total?: number;
+    count?: number;
+    results: Character[];
+};
+
+type Character = {
+    id?: number;
+    name?: string;
+    description?: string;
+    modified?: Date;
+    resourceURI?: string;
+    urls?: {
+        type?: "string";
+        url?: "string";
+    }[];
+    thumbnail?: {
+        path?: string;
+        extension?: string;
+    };
+    comics?: {
+        available?: number;
+        returned?: number;
+        collectionURI?: string;
+        items?: {
+            resourceURI?: string;
+            name?: string;
+        }[];
+    };
+
+    stories?: {
+        available?: number;
+        returned?: number;
+        collectionURI?: string;
+        items?: {
+            resourceURI?: string;
+            name?: string;
+            type?: string;
+        }[];
+    };
+    events?: {
+        available?: number;
+        returned?: number;
+        collectionURI?: string;
+        items?: {
+            resourceURI?: string;
+            name?: string;
+        }[];
+    };
+    series: {
+        available?: number;
+        returned?: number;
+        collectionURI?: string;
+        items?: {
+            resourceURI?: string;
+            name?: string;
+        }[];
+    };
+};
+
 const baseEndpoint = "https://gateway.marvel.com/";
 const charactersEndpoint = "v1/public/characters";
 
@@ -11,7 +83,8 @@ const getMarvelCharacter = async (offset: number) => {
     );
     return await request
         .then((response) => {
-            console.log(response);
+            const { data } = response as unknown as CharacterDataWrapper;
+            return data?.results;
         })
         .catch((error) => {
             console.log(error);
