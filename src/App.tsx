@@ -37,6 +37,7 @@ const App = (): JSX.Element => {
             await setDoc(doc(db, "votes", `${character.id}`), {
                 name: character.name,
                 votes: 1,
+                thumbnailUrl: `${character.thumbnail.path}/standard_medium.${character.thumbnail.extension}`,
             });
         }
         // getAndSetNewCharacters();
