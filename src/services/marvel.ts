@@ -18,19 +18,19 @@ type CharacterDataContainer = {
     results: Character[];
 };
 
-type Character = {
-    id?: number;
-    name?: string;
-    description?: string;
+export type Character = {
+    id: number;
+    name: string;
+    description: string;
     modified?: Date;
     resourceURI?: string;
     urls?: {
         type?: "string";
         url?: "string";
     }[];
-    thumbnail?: {
-        path?: string;
-        extension?: string;
+    thumbnail: {
+        path: string;
+        extension: string;
     };
     comics?: {
         available?: number;
@@ -82,12 +82,12 @@ const getMarvelCharacter = async (offset: number) => {
         `${baseEndpoint}${charactersEndpoint}?limit=1&offset=${offset}&apikey=${process.env.REACT_APP_MARVEL_PUBLIC_API_KEY}`
     );
     return await request
-        .then((response) => {
-            const { data } = response as unknown as CharacterDataWrapper;
-            return data?.results;
+        .then((response): CharacterDataWrapper => {
+            console.log(response);
+            return response.data.data.results;
         })
         .catch((error) => {
-            console.log(error);
+            return error;
         });
 };
 
