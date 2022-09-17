@@ -18,10 +18,11 @@
 .image__container {
     position: relative;
 }
+
 .character__image {
     display: block;
-    max-width: 100%;
-    height: auto;
+    max-width: 90%;
+    max-height: auto;
 }
 
 .image__overlay {
