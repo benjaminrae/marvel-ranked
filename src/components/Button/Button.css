@@ -1,0 +1,15 @@
+.button {
+    padding: 0.5rem;
+    background-color: var(--marvel-red);
+    border: none;
+    color: white;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    border: 2px solid var(--marvel-red);
+}
+
+.button:hover,
+.button:focus + .button__text {
+    background-color: white;
+    color: var(--marvel-red);
+}
