@@ -15,6 +15,7 @@ import {
     increment,
 } from "firebase/firestore";
 import { db } from "./services/firebase";
+import Footer from "./components/Footer/Footer";
 
 const App = (): JSX.Element => {
     const [character1, setCharacter1] = useState<Character[]>();
@@ -81,6 +82,7 @@ const App = (): JSX.Element => {
                     )}
                 </section>
             </main>
+            <Footer />
         </div>
     );
 };
