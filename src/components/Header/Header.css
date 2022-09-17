@@ -1,11 +1,15 @@
 .header {
     width: 100%;
     background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
 }
 
 .header__title {
     color: white;
-    padding: 2rem;
+
     font-size: 2rem;
 }
 
@@ -21,4 +25,20 @@
     border-top: 3px solid black;
     border-bottom: 3px solid black;
     font-size: 1.9rem;
+}
+
+.header__nav {
+    display: flex;
+}
+
+.nav__ul {
+    list-style: none;
+}
+
+.ul__li {
+    font-weight: 100;
+    color: black;
+    border-top: 3px solid black;
+    border-bottom: 3px solid black;
+    font-size: 1.2rem;
 }
