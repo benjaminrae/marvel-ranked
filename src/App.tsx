@@ -51,7 +51,7 @@ const App = (): JSX.Element => {
                 thumbnailUrl: `${character.thumbnail.path}/standard_medium.${character.thumbnail.extension}`,
             });
         }
-        // getAndSetNewCharacters();
+        getAndSetNewCharacters();
     };
 
     const getAndSetNewCharacters = () => {
