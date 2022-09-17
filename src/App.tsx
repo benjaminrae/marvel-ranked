@@ -19,18 +19,38 @@ const App = (): JSX.Element => {
         }
         marvelService.getMarvelCharacter(offset1).then((response) => {
             setCharacter1(response);
-            console.log(response);
         });
 
         marvelService.getMarvelCharacter(offset2).then((response) => {
             setCharacter2(response);
-            console.log(response);
         });
     };
     return (
         <div className="app">
             <Header />
-            <Button innerText="Start" onClick={handleStart} />
+            <main className="app__main">
+                <Button innerText="Start" onClick={handleStart} />
+                <section className="characters">
+                    {character1 && (
+                        <div>
+                            <div>{character1[0].name}</div>
+                            <img
+                                src={`${character1[0].thumbnail.path}/portrait_uncanny.${character1[0].thumbnail.extension}`}
+                                alt={character1[0].name}
+                            />
+                        </div>
+                    )}
+                    {character2 && (
+                        <div>
+                            <div>{character2[0].name}</div>
+                            <img
+                                src={`${character2[0].thumbnail.path}/portrait_uncanny.${character2[0].thumbnail.extension}`}
+                                alt={character2[0].name}
+                            />
+                        </div>
+                    )}
+                </section>
+            </main>
         </div>
     );
 };
