@@ -13,13 +13,22 @@ const CharacterCard = ({ character, onVote }: CharacterProps): JSX.Element => {
     };
     return (
         <div className="character">
-            <img
-                src={`${character.thumbnail.path}/portrait_uncanny.${character.thumbnail.extension}`}
-                alt={character.name}
-                className="character__image"
-            />
+            <div className="image__container">
+                <img
+                    src={`${character.thumbnail.path}/portrait_uncanny.${character.thumbnail.extension}`}
+                    alt={character.name}
+                    className="character__image"
+                />
+                <div className="image__overlay">
+                    <p className="character__description">
+                        {character.description
+                            ? character.description
+                            : "No description available"}
+                    </p>
+                </div>
+            </div>
             <h2 className="character__title">{character.name}</h2>
-            <p className="character__description">{character.description}</p>
+
             <Button onClick={handleVoteClick} innerText="vote" />
         </div>
     );

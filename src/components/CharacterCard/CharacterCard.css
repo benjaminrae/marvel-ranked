@@ -5,6 +5,7 @@
     align-items: center;
     gap: 1rem;
     padding: 1rem;
+    flex-basis: 40%;
 }
 
 .character__title {
@@ -14,7 +15,38 @@
     text-overflow: ellipsis;
 }
 
+.image__container {
+    position: relative;
+}
 .character__image {
+    display: block;
     max-width: 100%;
     height: auto;
+}
+
+.image__overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: 0.5s ease;
+    background-color: var(--marvel-red);
+}
+.image__container:hover .image__overlay {
+    opacity: 1;
+}
+
+.character__description {
+    text-align: center;
+    font-weight: 100;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
 }

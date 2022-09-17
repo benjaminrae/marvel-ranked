@@ -39,7 +39,7 @@ const App = (): JSX.Element => {
                 votes: 1,
             });
         }
-        getAndSetNewCharacters();
+        // getAndSetNewCharacters();
     };
 
     const getAndSetNewCharacters = () => {
