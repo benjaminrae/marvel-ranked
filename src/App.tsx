@@ -77,24 +77,28 @@ const App = (): JSX.Element => {
                 onRankClick={onRankClick}
             />
             <main className="app__main">
-                <Leaderboard />
-                {/* {!isStarted && (
-                    <Button innerText="Start" onClick={handleStart} />
+                {showLeaderboard && <Leaderboard />}
+                {!showLeaderboard && (
+                    <>
+                        {!isStarted && (
+                            <Button innerText="Start" onClick={handleStart} />
+                        )}
+                        <section className="main__characters">
+                            {character1 && (
+                                <CharacterCard
+                                    character={character1[0]}
+                                    onVote={handleVote}
+                                />
+                            )}
+                            {character2 && (
+                                <CharacterCard
+                                    character={character2[0]}
+                                    onVote={handleVote}
+                                />
+                            )}
+                        </section>
+                    </>
                 )}
-                <section className="main__characters">
-                    {character1 && (
-                        <CharacterCard
-                            character={character1[0]}
-                            onVote={handleVote}
-                        />
-                    )}
-                    {character2 && (
-                        <CharacterCard
-                            character={character2[0]}
-                            onVote={handleVote}
-                        />
-                    )}
-                </section> */}
             </main>
             <Footer />
         </div>
