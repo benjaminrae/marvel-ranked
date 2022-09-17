@@ -6,6 +6,15 @@ import Header from "./components/Header/Header";
 import CharacterCard from "./components/CharacterCard/CharacterCard";
 import { Character, marvelService } from "./services/marvel";
 import { getRandomOffset } from "./utils/getRandomOffset";
+import {
+    doc,
+    FieldValue,
+    getDoc,
+    setDoc,
+    updateDoc,
+    increment,
+} from "firebase/firestore";
+import { db } from "./services/firebase";
 
 const App = (): JSX.Element => {
     const [character1, setCharacter1] = useState<Character[]>();
@@ -13,6 +22,27 @@ const App = (): JSX.Element => {
     const [isStarted, setIsStarted] = useState(false);
 
     const handleStart = (event: React.MouseEvent<HTMLButtonElement>) => {
+        getAndSetNewCharacters();
+    };
+
+    const handleVote = async (character: Character) => {
+        const docRef = doc(db, "votes", `${character.id}`);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+            await updateDoc(docRef, {
+                votes: increment(1),
+            });
+        } else {
+            await setDoc(doc(db, "votes", `${character.id}`), {
+                name: character.name,
+                votes: 1,
+            });
+        }
+        // getAndSetNewCharacters();
+    };
+
+    const getAndSetNewCharacters = () => {
         const offset1 = getRandomOffset();
         let offset2 = getRandomOffset();
         if (offset1 === offset2) {
@@ -27,6 +57,7 @@ const App = (): JSX.Element => {
         });
         setIsStarted(true);
     };
+
     return (
         <div className="app">
             <Header />
@@ -35,8 +66,18 @@ const App = (): JSX.Element => {
                     <Button innerText="Start" onClick={handleStart} />
                 )}
                 <section className="main__characters">
-                    {character1 && <CharacterCard character={character1[0]} />}
-                    {character2 && <CharacterCard character={character2[0]} />}
+                    {character1 && (
+                        <CharacterCard
+                            character={character1[0]}
+                            onVote={handleVote}
+                        />
+                    )}
+                    {character2 && (
+                        <CharacterCard
+                            character={character2[0]}
+                            onVote={handleVote}
+                        />
+                    )}
                 </section>
             </main>
         </div>

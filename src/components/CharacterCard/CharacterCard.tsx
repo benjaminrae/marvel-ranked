@@ -5,18 +5,31 @@ import { Character } from "../../services/marvel";
 
 type CharacterProps = {
     character: Character;
+    onVote: (character: Character) => void;
 };
-const CharacterCard = ({ character }: CharacterProps): JSX.Element => {
+const CharacterCard = ({ character, onVote }: CharacterProps): JSX.Element => {
+    const handleVoteClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        onVote(character);
+    };
     return (
         <div className="character">
-            <img
-                src={`${character.thumbnail.path}/portrait_uncanny.${character.thumbnail.extension}`}
-                alt={character.name}
-                className="character__image"
-            />
+            <div className="image__container">
+                <img
+                    src={`${character.thumbnail.path}/portrait_uncanny.${character.thumbnail.extension}`}
+                    alt={character.name}
+                    className="character__image"
+                />
+                <div className="image__overlay">
+                    <p className="character__description">
+                        {character.description
+                            ? character.description
+                            : "No description available"}
+                    </p>
+                </div>
+            </div>
             <h2 className="character__title">{character.name}</h2>
-            <p className="character__description">{character.description}</p>
-            <Button onClick={() => {}} innerText="vote" />
+
+            <Button onClick={handleVoteClick} innerText="vote" />
         </div>
     );
 };
