@@ -27,27 +27,32 @@ const Leaderboard = (): JSX.Element => {
         { name: "hulk", votes: 999 },
     ];
     return (
-        <table>
-            {leaderboardData && (
-                <tbody className="leaderboard__table-body">
-                    {leaderboardData.map((data, index) => {
-                        return (
-                            <tr className="leaderboard__row" key={index}>
-                                <td>#{index + 1}</td>
-                                <td>
-                                    <img
-                                        src={data.thumbnailUrl}
-                                        alt={data.name}
-                                    />
-                                </td>
-                                <td>{data.name}</td>
-                                <td>{data.votes}</td>
-                            </tr>
-                        );
-                    })}
-                </tbody>
-            )}
-        </table>
+        <div className="leaderboard">
+            <table className="leaderboard__table">
+                {leaderboardData && (
+                    <tbody className="leaderboard__table-body">
+                        {leaderboardData.map((data, index) => {
+                            return (
+                                <tr className="leaderboard__row" key={index}>
+                                    <td>#{index + 1}</td>
+                                    <td>
+                                        <img
+                                            src={data.thumbnailUrl}
+                                            alt={data.name}
+                                            className="leaderboard__image"
+                                        />
+                                    </td>
+                                    <td className="leaderboard__name">
+                                        {data.name}
+                                    </td>
+                                    <td>{data.votes}</td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                )}
+            </table>
+        </div>
     );
 };
 
