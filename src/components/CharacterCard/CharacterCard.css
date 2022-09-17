@@ -13,17 +13,25 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-size: 1.3rem;
 }
 
 .image__container {
     position: relative;
+    max-width: 90%;
 }
 
 .character__image {
     display: block;
-    max-width: 90%;
+    max-width: 100%;
     max-height: auto;
 }
+
+/* @media only screen and (min-width: 670px) {
+    .image__container {
+        transform: scale(0.5);
+    }
+} */
 
 .image__overlay {
     position: absolute;
