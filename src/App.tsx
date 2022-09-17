@@ -16,11 +16,13 @@ import {
 } from "firebase/firestore";
 import { db } from "./services/firebase";
 import Footer from "./components/Footer/Footer";
+import Leaderboard from "./components/Leaderboard/Leaderboard";
 
 const App = (): JSX.Element => {
     const [character1, setCharacter1] = useState<Character[]>();
     const [character2, setCharacter2] = useState<Character[]>();
     const [isStarted, setIsStarted] = useState(false);
+    const [showLeaderboard, setShowLeaderboard] = useState(false);
 
     const handleStart = (event: React.MouseEvent<HTMLButtonElement>) => {
         getAndSetNewCharacters();
@@ -64,7 +66,8 @@ const App = (): JSX.Element => {
         <div className="app">
             <Header />
             <main className="app__main">
-                {!isStarted && (
+                <Leaderboard />
+                {/* {!isStarted && (
                     <Button innerText="Start" onClick={handleStart} />
                 )}
                 <section className="main__characters">
@@ -80,7 +83,7 @@ const App = (): JSX.Element => {
                             onVote={handleVote}
                         />
                     )}
-                </section>
+                </section> */}
             </main>
             <Footer />
         </div>
