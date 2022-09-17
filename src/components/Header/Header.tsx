@@ -2,7 +2,14 @@ import "./Header.css";
 
 import React from "react";
 
-const Header = () => {
+type HeaderProps = {
+    onLeaderboardClick: () => void;
+    onRankClick: () => void;
+};
+const Header = ({
+    onLeaderboardClick,
+    onRankClick,
+}: HeaderProps): JSX.Element => {
     return (
         <div className="header">
             <h1 className="header__title">
@@ -11,8 +18,12 @@ const Header = () => {
             </h1>
             <nav className="header__nav">
                 <ul className="nav__ul">
-                    <li className="ul__li">Rank</li>
-                    <li className="ul__li">Leaderboard</li>
+                    <li className="ul__li" onClick={onRankClick}>
+                        Rank
+                    </li>
+                    <li className="ul__li" onClick={onLeaderboardClick}>
+                        Leaderboard
+                    </li>
                 </ul>
             </nav>
         </div>

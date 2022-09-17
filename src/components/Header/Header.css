@@ -4,13 +4,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2rem;
+    padding: 1rem 2rem;
 }
 
 .header__title {
     color: white;
 
-    font-size: 2rem;
+    font-size: 1.8rem;
 }
 
 .caps {
@@ -24,7 +24,7 @@
     color: black;
     border-top: 3px solid black;
     border-bottom: 3px solid black;
-    font-size: 1.9rem;
+    font-size: 1.7rem;
 }
 
 .header__nav {
