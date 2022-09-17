@@ -28,6 +28,14 @@ const App = (): JSX.Element => {
         getAndSetNewCharacters();
     };
 
+    const onLeaderboardClick = () => {
+        setShowLeaderboard(true);
+    };
+
+    const onRankClick = () => {
+        setShowLeaderboard(false);
+    };
+
     const handleVote = async (character: Character) => {
         const docRef = doc(db, "votes", `${character.id}`);
         const docSnap = await getDoc(docRef);
@@ -64,7 +72,10 @@ const App = (): JSX.Element => {
 
     return (
         <div className="app">
-            <Header />
+            <Header
+                onLeaderboardClick={onLeaderboardClick}
+                onRankClick={onRankClick}
+            />
             <main className="app__main">
                 <Leaderboard />
                 {/* {!isStarted && (
