@@ -1,0 +1,14 @@
+.leaderboard__table-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.leaderboard__row {
+    display: flex;
+    gap: 2rem;
+    justify-content: space-between;
+    width: 100%;
+    border: 1px solid black;
+    padding: 1rem;
+}
