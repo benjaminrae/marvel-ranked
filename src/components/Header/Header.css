@@ -33,6 +33,8 @@
 
 .nav__ul {
     list-style: none;
+    display: flex;
+    gap: 2rem;
 }
 
 .ul__li {
@@ -41,4 +43,12 @@
     border-top: 3px solid black;
     border-bottom: 3px solid black;
     font-size: 1.2rem;
+}
+
+.ul__li:hover,
+.ul__li:focus {
+    background-color: var(--marvel-red);
+    color: white;
+    border-top: 3px solid var(--marvel-red);
+    border-bottom: 3px solid var(--marvel-red);
 }
