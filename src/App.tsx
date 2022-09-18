@@ -17,15 +17,18 @@ import {
 import { db } from "./services/firebase";
 import Footer from "./components/Footer/Footer";
 import Leaderboard from "./components/Leaderboard/Leaderboard";
+import Loading from "./components/Loading/Loading";
 
 const App = (): JSX.Element => {
     const [character1, setCharacter1] = useState<Character[]>();
     const [character2, setCharacter2] = useState<Character[]>();
     const [isStarted, setIsStarted] = useState(false);
     const [showLeaderboard, setShowLeaderboard] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleStart = (event: React.MouseEvent<HTMLButtonElement>) => {
         getAndSetNewCharacters();
+        setIsLoading(false);
     };
 
     const onLeaderboardClick = () => {
@@ -51,10 +54,13 @@ const App = (): JSX.Element => {
                 thumbnailUrl: `${character.thumbnail.path}/standard_medium.${character.thumbnail.extension}`,
             });
         }
+
         getAndSetNewCharacters();
+        setIsLoading(false);
     };
 
     const getAndSetNewCharacters = () => {
+        setIsLoading(true);
         const offset1 = getRandomOffset();
         let offset2 = getRandomOffset();
         if (offset1 === offset2) {
@@ -78,7 +84,8 @@ const App = (): JSX.Element => {
             />
             <main className="app__main">
                 {showLeaderboard && <Leaderboard />}
-                {!showLeaderboard && (
+                {!showLeaderboard && isLoading && <Loading />}
+                {!showLeaderboard && !isLoading && (
                     <>
                         {!isStarted && (
                             <Button innerText="Start" onClick={handleStart} />
