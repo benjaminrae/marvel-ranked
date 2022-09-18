@@ -8,7 +8,7 @@ import { Character, marvelService } from "./services/marvel";
 import { getRandomOffset } from "./utils/getRandomOffset";
 import {
     doc,
-    FieldValue,
+    Timestamp,
     getDoc,
     setDoc,
     updateDoc,
@@ -18,6 +18,7 @@ import { db } from "./services/firebase";
 import Footer from "./components/Footer/Footer";
 import Leaderboard from "./components/Leaderboard/Leaderboard";
 import Loading from "./components/Loading/Loading";
+import { off } from "process";
 
 const App = (): JSX.Element => {
     const [character1, setCharacter1] = useState<Character[]>();
@@ -66,16 +67,60 @@ const App = (): JSX.Element => {
         if (offset1 === offset2) {
             offset2 = getRandomOffset();
         }
-        marvelService.getMarvelCharacter(offset1).then((response) => {
-            setCharacter1(response);
+        checkCache(offset1).then((response) => {
+            if (response) {
+                retrieveFromCache(offset1).then((response) => {
+                    setCharacter1(response);
+                });
+            } else {
+                marvelService.getMarvelCharacter(offset1).then((response) => {
+                    setCharacter1(response);
+                    addToCache(offset1, response);
+                });
+            }
         });
 
-        marvelService.getMarvelCharacter(offset2).then((response) => {
-            setCharacter2(response);
+        checkCache(offset2).then((response) => {
+            if (response) {
+                retrieveFromCache(offset2).then((response) => {
+                    setCharacter2(response);
+                });
+            } else {
+                marvelService.getMarvelCharacter(offset2).then((response) => {
+                    setCharacter2(response);
+                    addToCache(offset2, response);
+                });
+            }
         });
         setIsStarted(true);
     };
 
+    const checkCache = async (offset: number) => {
+        const docRef = doc(db, "cache", `${offset}`);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+            return true;
+        } else {
+            return false;
+        }
+    };
+
+    const retrieveFromCache = async (offset: number) => {
+        const docRef = doc(db, "cache", `${offset}`);
+        const docSnap = await getDoc(docRef);
+
+        const docData = docSnap.data();
+        if (docData) return docData.character;
+    };
+
+    const addToCache = async (offset: number, response: any) => {
+        const ts = Timestamp.now();
+        await setDoc(doc(db, "cache", `${offset}`), {
+            character: response,
+            createdAt: ts,
+        });
+    };
     return (
         <div className="app">
             <Header
