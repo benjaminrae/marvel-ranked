@@ -76,10 +76,13 @@ const baseEndpoint = "https://gateway.marvel.com/";
 const charactersEndpoint = "v1/public/characters";
 
 const maxOffset = 1561;
+const modifiedSince = "2000-01-01T00%3A00%3A00";
+const modifiedSinceMaxOffset = 768;
+
 const getMarvelCharacter = async (offset: number) => {
     console.log("key", process.env.REACT_APP_MARVEL_PUBLIC_API_KEY);
     const request = axios.get(
-        `${baseEndpoint}${charactersEndpoint}?limit=1&offset=${offset}&apikey=${process.env.REACT_APP_MARVEL_PUBLIC_API_KEY}`
+        `${baseEndpoint}${charactersEndpoint}?limit=1&offset=${offset}&modifiedSince=${modifiedSince}&apikey=${process.env.REACT_APP_MARVEL_PUBLIC_API_KEY}`
     );
     return await request
         .then((response): CharacterDataWrapper => {
@@ -92,6 +95,6 @@ const getMarvelCharacter = async (offset: number) => {
 };
 
 export const marvelService = {
-    maxOffset: maxOffset,
+    maxOffset: modifiedSinceMaxOffset,
     getMarvelCharacter,
 };
