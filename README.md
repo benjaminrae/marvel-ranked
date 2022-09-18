@@ -39,7 +39,7 @@ Once the user votes on a character, if a document exists with the same character
 -   ReactJs
 -   CSS
 -   Typescript
--   Hosted on Netlify
+-   Hosted on Vercel
 
 **API**
 
