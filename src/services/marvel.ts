@@ -80,13 +80,11 @@ const modifiedSince = "2000-01-01T00%3A00%3A00";
 const modifiedSinceMaxOffset = 768;
 
 const getMarvelCharacter = async (offset: number) => {
-    console.log("key", process.env.REACT_APP_MARVEL_PUBLIC_API_KEY);
     const request = axios.get(
         `${baseEndpoint}${charactersEndpoint}?limit=1&offset=${offset}&modifiedSince=${modifiedSince}&apikey=${process.env.REACT_APP_MARVEL_PUBLIC_API_KEY}`
     );
     return await request
         .then((response): CharacterDataWrapper => {
-            console.log(response);
             return response.data.data.results;
         })
         .catch((error) => {
