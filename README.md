@@ -10,7 +10,7 @@
 
 ---
 
-This project was build for Hacktoon 2 from MLH. This was my second time taking part in a hackathon and it has been a wild weekend since I was also working and moving house. For that reason I didn’t make as much progress as I would have liked.
+This project was built for Hacktoon 2 from MLH. This was my second time taking part in a hackathon and it has been a wild weekend since I was also working and moving house. For that reason I didn’t make as much progress as I would have liked.
 
 The topic for the hackathon was all about comics and cartoons.
 
