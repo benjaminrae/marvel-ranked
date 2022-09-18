@@ -1,46 +1,82 @@
-# Getting Started with Create React App
+# Marvel Ranked
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[Live Site](https://marvel-ranked.vercel.app/)
 
-## Available Scripts
+[Demo Video](https://youtu.be/cQHCrjL2L8M)
 
-In the project directory, you can run:
+![src/resources/screenshots/dashboard-screenshot.jpeg](src/resources/images/voting.png)
 
-### `npm start`
+## About the project ❓
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+---
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+This project was build for Hacktoon 2 from MLH. This was my second time taking part in a hackathon and it has been a wild weekend since I was also working and moving house. For that reason I didn’t make as much progress as I would have liked.
 
-### `npm test`
+The topic for the hackathon was all about comics and cartoons.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Marvel has also been one of my favourite comic publishers so once I found that they had an API I had to make something with it.
 
-### `npm run build`
+## The problem 🤔
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Many arguments have been had over juice boxes in the school yard and beers in pubs over which Marvel comics character is the best.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## The solution 💡
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+It’s time to put and end to the arguments and give the people what they want, a way to rank their favourite characters and decide on a winner once and for all.
 
-### `npm run eject`
+Marvel Ranked shows two Marvel comic characters at random and the user can vote on which one they think is best. The most cited characters are shown on the leaderboard.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## How the game works 🎯
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Two random offsets are generated and then the cache is checked. If the character exists in the cache, no API call is made. This is because the Marvel API is rate limited. Characters are stored in the cache for one week.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Once the user votes on a character, if a document exists with the same character ID in the “votes” database, then the number of votes is incremented by 1. If the character hasn’t been voted on before, a new document is created. This document contains the number of votes, the character name and the URL for the character thumbnail.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Built with ⚒️
 
-## Learn More
+**Front End**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+-   ReactJs
+-   CSS
+-   Typescript
+-   Hosted on Netlify
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+**API**
+
+-   Marvel Developers API
+
+**Back End (as a service)**
+
+-   Firebase
+
+### What I learned from this project
+
+This project was a great experience. I've only been using TypeScript for a few weeks and I'm starting to feel more comfortable and I'm relying less on "any".
+
+It was also a great learning experience in relation to time management. There's so much more I would have liked to do but since I had a lot on this weekend, I had to just push out the bare essentials. For once I didn't get caught up in tiny details and I kept progressing.
+
+Finally, I was able to learn more about Firebase. I used Firestore Cloud Functions for the first time to removed expired documents from the cache.
+
+### Next steps
+
+-   Improve ranking of characters
+    -   Store times character appears
+    -   display a percentage on leaderboard (appeared/votes)
+-   Add other rankings
+    -   Comics
+    -   Series
+-   Search
+    -   Allow users to search for their favourite character to see the character’s information
+-   Testing
+    -   Unit tests
+
+### Screenshots
+
+Character card
+![src/resources/screenshots/dashboard-screenshot.jpeg](src/resources/images/character%20card.png)
+
+Character card (hover)
+![src/resources/screenshots/dashboard-screenshot.jpeg](src/resources/images/character%20card%20hover.png)
+
+Leaderboard
+![src/resources/screenshots/dashboard-screenshot.jpeg](src/resources/images/leaderboard.png)
