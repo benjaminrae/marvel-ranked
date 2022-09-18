@@ -46,7 +46,7 @@ const Header = ({
             {!hamburgerOpen && (
                 <h1 className="header__title">
                     <span className="caps">Marvel</span>{" "}
-                    <span className="border-top-bottom">Ranking</span>
+                    <span className="border-top-bottom">Ranked</span>
                 </h1>
             )}
             {hamburgerOpen && <h1> </h1>}
